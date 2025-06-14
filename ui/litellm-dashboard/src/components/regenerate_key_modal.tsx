@@ -5,6 +5,7 @@ import { add } from "date-fns";
 import { regenerateKeyCall } from "./networking";
 import { KeyResponse } from "./key_team_helpers/key_list";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { translate } from "../hooks/useTranslation";
 
 interface RegenerateKeyModalProps {
   selectedToken: KeyResponse | null;
@@ -87,10 +88,10 @@ export function RegenerateKeyModal({
       const formValues = await form.validateFields();
       const response = await regenerateKeyCall(accessToken, selectedToken.token, formValues);
       setRegeneratedKey(response.key);
-      message.success("API Key regenerated successfully");
+      message.success(translate("API Key regenerated successfully"));
     } catch (error) {
       console.error("Error regenerating key:", error);
-      message.error("Failed to regenerate API Key");
+      message.error(translate("Failed to regenerate API Key"));
       setIsRegenerating(false); // Reset regenerating state on error
     }
   };
@@ -104,7 +105,7 @@ export function RegenerateKeyModal({
 
   return (
     <Modal
-      title="Regenerate API Key"
+      title={translate("Regenerate API Key")}
       open={visible}
       onCancel={handleClose}
       footer={regeneratedKey ? [
@@ -136,21 +137,21 @@ export function RegenerateKeyModal({
             </p>
           </Col>
           <Col numColSpan={1}>
-            <Text className="mt-3">Key Alias:</Text>
+            <Text className="mt-3">{translate("Key Alias")}:</Text>
             <div className="bg-gray-100 p-2 rounded mb-2">
               <pre className="break-words whitespace-normal">
-                {selectedToken?.key_alias || "No alias set"}
+                {selectedToken?.key_alias || translate("No alias set")}
               </pre>
             </div>
-            <Text className="mt-3">New API Key:</Text>
+            <Text className="mt-3">{translate("New API Key")}:</Text>
             <div className="bg-gray-100 p-2 rounded mb-2">
               <pre className="break-words whitespace-normal">{regeneratedKey}</pre>
             </div>
             <CopyToClipboard
               text={regeneratedKey}
-              onCopy={() => message.success("API Key copied to clipboard")}
+              onCopy={() => message.success(translate("API Key copied to clipboard"))}
             >
-              <Button className="mt-3">Copy API Key</Button>
+              <Button className="mt-3">{translate("Copy API Key")}</Button>
             </CopyToClipboard>
           </Col>
         </Grid>
@@ -164,19 +165,19 @@ export function RegenerateKeyModal({
             }
           }}
         >
-          <Form.Item name="key_alias" label="Key Alias">
+          <Form.Item name="key_alias" label={translate("Key Alias")}>
             <TextInput disabled={true} />
           </Form.Item>
-          <Form.Item name="max_budget" label="Max Budget (USD)">
+          <Form.Item name="max_budget" label={translate("Max Budget (USD)")}>
             <InputNumber step={0.01} precision={2} style={{ width: "100%" }} />
           </Form.Item>
-          <Form.Item name="tpm_limit" label="TPM Limit">
+          <Form.Item name="tpm_limit" label={translate("TPM Limit")}>
             <InputNumber style={{ width: "100%" }} />
           </Form.Item>
-          <Form.Item name="rpm_limit" label="RPM Limit">
+          <Form.Item name="rpm_limit" label={translate("RPM Limit")}>
             <InputNumber style={{ width: "100%" }} />
           </Form.Item>
-          <Form.Item name="duration" label="Expire Key (eg: 30s, 30h, 30d)" className="mt-8">
+          <Form.Item name="duration" label={translate("Expire Key (eg: 30s, 30h, 30d)")} className="mt-8">
             <TextInput placeholder="" />
           </Form.Item>
           <div className="mt-2 text-sm text-gray-500">

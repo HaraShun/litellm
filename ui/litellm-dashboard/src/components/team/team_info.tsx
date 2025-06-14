@@ -37,6 +37,7 @@ import ObjectPermissionsView from "../object_permissions_view";
 import VectorStoreSelector from "../vector_store_management/VectorStoreSelector";
 import MCPServerSelector from "../mcp_server_management/MCPServerSelector";
 import PremiumVectorStoreSelector from "../common_components/PremiumVectorStoreSelector";
+import { translate } from "../../hooks/useTranslation";
 
 export interface TeamData {
   team_id: string;
@@ -416,7 +417,7 @@ const TeamInfoView: React.FC<TeamInfoProps> = ({
                     </Select>
                   </Form.Item>
 
-                  <Form.Item label="Max Budget (USD)" name="max_budget">
+                  <Form.Item label={translate("Max Budget (USD)")} name="max_budget">
                     <NumericalInput step={0.01} precision={2} style={{ width: "100%" }} />
                   </Form.Item>
 

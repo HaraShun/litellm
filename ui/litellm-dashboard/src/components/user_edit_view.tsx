@@ -5,6 +5,7 @@ import { Button } from "@tremor/react";
 import { getModelDisplayName } from "./key_team_helpers/fetch_available_models_team_key";
 import { all_admin_roles } from "../utils/roles";
 import { InfoCircleOutlined } from "@ant-design/icons";
+import { translate } from "../hooks/useTranslation";
 interface UserEditViewProps {
   userData: any;
   onCancel: () => void;
@@ -135,7 +136,7 @@ export function UserEditView({
       </Form.Item>
 
       <Form.Item
-        label="Max Budget (USD)"
+        label={translate("Max Budget (USD)")}
         name="max_budget"
       >
         <InputNumber
@@ -165,4 +166,4 @@ export function UserEditView({
       </div>
     </Form>
   );
-} 
+}  

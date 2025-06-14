@@ -32,6 +32,7 @@ import {
 } from "@tremor/react";
 import AuditLogs from "./audit_logs";
 import { getTimeRangeDisplay } from "./logs_utils";
+import { translate } from "../../hooks/useTranslation";
 
 interface SpendLogsTableProps {
   accessToken: string | null;
@@ -429,7 +430,7 @@ export default function SpendLogsTable({
     },
     {
       name: 'Key Alias',
-      label: 'Key Alias',
+      label: translate('Key Alias'),
       isSearchable: true,
       searchFn: async (searchText: string) => {
         if (!accessToken) return [];

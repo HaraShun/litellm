@@ -7,6 +7,7 @@ import { fetchAllKeyAliases, fetchAllTeams } from "../../components/key_team_hel
 import { debounce } from "lodash";
 import { defaultPageSize } from "../constants";
 import { PaginatedResponse } from ".";
+import { translate } from "../../hooks/useTranslation";
 
 export const FILTER_KEYS = {
   TEAM_ID: "Team ID",
@@ -15,7 +16,7 @@ export const FILTER_KEYS = {
   MODEL: "Model",
   USER_ID: "User ID",
   STATUS: "Status",
-  KEY_ALIAS: "Key Alias",
+  KEY_ALIAS: translate("Key Alias"),
 } as const;
 
 export type FilterKey = keyof typeof FILTER_KEYS;
@@ -205,18 +206,20 @@ export function useLogFilterLogic({
       
       // Ensure all keys in LogFilterState are present, defaulting to '' if not in newFilters
       for (const key of Object.keys(defaultFilters) as Array<keyof LogFilterState>) {
-        if (!(key in updatedFilters)) {
+        if (!(key in updatedFilters) || updatedFilters[key] === undefined) {
           updatedFilters[key] = defaultFilters[key];
         }
       }
       
+      const typedFilters: LogFilterState = updatedFilters as LogFilterState;
+      
       // Only call debouncedSearch if filters have actually changed
-      if (JSON.stringify(updatedFilters) !== JSON.stringify(prev)) {
+      if (JSON.stringify(typedFilters) !== JSON.stringify(prev)) {
         setCurrentPage(1);
-        debouncedSearch(updatedFilters, 1);
+        debouncedSearch(typedFilters, 1);
       }
       
-      return updatedFilters as LogFilterState;
+      return typedFilters;
     });
   };
     

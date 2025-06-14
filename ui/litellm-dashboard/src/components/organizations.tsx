@@ -30,6 +30,7 @@ import { message } from 'antd';
 import OrganizationInfoView from './organization/organization_view';
 import { Organization, organizationListCall, organizationCreateCall, organizationDeleteCall } from './networking';
 import VectorStoreSelector from "./vector_store_management/VectorStoreSelector";
+import { translate } from '../hooks/useTranslation';
 
 interface OrganizationsTableProps {
   organizations: Organization[];
@@ -207,7 +208,7 @@ const OrganizationsTable: React.FC<OrganizationsTableProps> = ({
                     </Select2>
                   </Form.Item>
 
-                  <Form.Item label="Max Budget (USD)" name="max_budget">
+                  <Form.Item label={translate("Max Budget (USD)")} name="max_budget">
                     <NumericalInput step={0.01} precision={2} width={200} />
                   </Form.Item>
                   <Form.Item label="Reset Budget" name="budget_duration">
@@ -497,7 +498,7 @@ const OrganizationsTable: React.FC<OrganizationsTableProps> = ({
                       </Select2>
                     </Form.Item>
 
-                    <Form.Item label="Max Budget (USD)" name="max_budget">
+                    <Form.Item label={translate("Max Budget (USD)")} name="max_budget">
                       <NumericalInput step={0.01} precision={2} width={200} />
                     </Form.Item>
                     <Form.Item label="Reset Budget" name="budget_duration">

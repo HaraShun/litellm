@@ -19,6 +19,7 @@ import { debounce } from "lodash";
 import { defaultPageSize } from "./constants";
 import { fetchAllTeams } from "./key_team_helpers/filter_helpers";
 import { fetchAllOrganizations } from "./key_team_helpers/filter_helpers";
+import { translate } from "../hooks/useTranslation";
 import {
   flexRender,
   getCoreRowModel,
@@ -241,7 +242,7 @@ export function AllKeysTable({
     {
       id: "key_alias",
       accessorKey: "key_alias",
-      header: "Key Alias",
+      header: translate("Key Alias"),
       cell: (info) => {
         const value = info.getValue() as string;
         return <Tooltip title={value}>{value ? (value.length > 20 ? `${value.slice(0, 20)}...` : value) : "-"}</Tooltip>
@@ -525,7 +526,7 @@ export function AllKeysTable({
     },
     {
       name: "Key Alias",
-      label: "Key Alias",
+      label: translate("Key Alias"),
       isSearchable: true,
       searchFn: async (searchText) => {
         const filteredKeyAliases = allKeyAliases.filter(key => {
