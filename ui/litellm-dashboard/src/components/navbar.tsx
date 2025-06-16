@@ -62,16 +62,16 @@ const Navbar: React.FC<NavbarProps> = ({
       key: "1",
       label: (
         <div className="py-1">
-          <p className="text-sm text-gray-600">Role: {userRole}</p>
-          <p className="text-sm text-gray-600">Email: {userEmail || "Unknown"}</p>
+          <p className="text-sm text-gray-600">役割: {userRole}</p>
+          <p className="text-sm text-gray-600">メール: {userEmail || "不明"}</p>
           <p className="text-sm text-gray-600"><UserOutlined /> {userID}</p>
-          <p className="text-sm text-gray-600">Premium User: {String(premiumUser)}</p>
+          <p className="text-sm text-gray-600">プレミアムユーザー: {String(premiumUser)}</p>
         </div>
       ),
     },
     {
       key: "2",
-      label: <p className="text-sm hover:text-gray-900" onClick={handleLogout}><LogoutOutlined /> Logout</p>,
+      label: <p className="text-sm hover:text-gray-900" onClick={handleLogout}><LogoutOutlined /> ログアウト</p>,
     }
   ];
 
@@ -99,7 +99,7 @@ const Navbar: React.FC<NavbarProps> = ({
               rel="noopener noreferrer"
               className="text-[13px] text-gray-600 hover:text-gray-900 transition-colors"
             >
-              Docs
+              ドキュメント
             </a>
 
             <Dropdown 
@@ -112,7 +112,7 @@ const Navbar: React.FC<NavbarProps> = ({
               }}
             >
               <button className="inline-flex items-center text-[13px] text-gray-600 hover:text-gray-900 transition-colors">
-                User
+                ユーザー
                 <svg
                   className="ml-1 w-4 h-4 text-gray-500"
                   fill="none"

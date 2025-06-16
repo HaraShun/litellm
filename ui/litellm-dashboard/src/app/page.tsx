@@ -47,31 +47,31 @@ function getCookie(name: string) {
 
 function formatUserRole(userRole: string) {
   if (!userRole) {
-    return "Undefined Role";
+    return "未定義の役割";
   }
   console.log(`Received user role: ${userRole.toLowerCase()}`);
   console.log(`Received user role length: ${userRole.toLowerCase().length}`);
   switch (userRole.toLowerCase()) {
     case "app_owner":
-      return "App Owner";
+      return "アプリオーナー";
     case "demo_app_owner":
-      return "App Owner";
+      return "アプリオーナー";
     case "app_admin":
-      return "Admin";
+      return "管理者";
     case "proxy_admin":
-      return "Admin";
+      return "管理者";
     case "proxy_admin_viewer":
-      return "Admin Viewer";
+      return "管理者（閲覧者）";
     case "org_admin":
-      return "Org Admin";
+      return "組織管理者";
     case "internal_user":
-      return "Internal User";
+      return "内部ユーザー";
     case "internal_viewer":
-      return "Internal Viewer";
+      return "内部ユーザー（閲覧者）";
     case "app_user":
-      return "App User";
+      return "アプリユーザー";
     default:
-      return "Unknown Role";
+      return "不明な役割";
   }
 }
 
@@ -91,7 +91,7 @@ function LoadingScreen() {
       
       <div className="flex items-center justify-center gap-2">
         <UiLoadingSpinner className="size-4" />
-        <span className="text-gray-600 text-sm">Loading...</span>
+        <span className="text-gray-600 text-sm">読み込み中...</span>
       </div>
     </div>
   );
@@ -186,7 +186,7 @@ export default function CreateKeyPage() {
         const formattedUserRole = formatUserRole(decoded.user_role);
         console.log("Decoded user_role:", formattedUserRole);
         setUserRole(formattedUserRole);
-        if (formattedUserRole == "Admin Viewer") {
+        if (formattedUserRole == "管理者（閲覧者）") {
           setPage("usage");
         }
       } else {

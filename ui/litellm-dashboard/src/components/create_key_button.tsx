@@ -380,7 +380,7 @@ const CreateKey: React.FC<CreateKeyProps> = ({
     <div>
       {userRole && rolesWithWriteAccess.includes(userRole) && (
         <Button className="mx-auto" onClick={() => setIsModalVisible(true)}>
-          + Create New Key
+          + 新しいキーを作成
         </Button>
       )}
       <Modal
@@ -400,12 +400,12 @@ const CreateKey: React.FC<CreateKeyProps> = ({
         >
           {/* Section 1: Key Ownership */}
           <div className="mb-8">
-            <Title className="mb-4">Key Ownership</Title>
+            <Title className="mb-4">キーの所有権</Title>
             <Form.Item 
               label={
                 <span>
-                  Owned By{' '}
-                  <Tooltip title="Select who will own this API key">
+                  所有者{' '}
+                  <Tooltip title="このAPIキーを所有するユーザーを選択してください">
                     <InfoCircleOutlined style={{ marginLeft: '4px' }} />
                   </Tooltip>
                 </span>
@@ -416,9 +416,9 @@ const CreateKey: React.FC<CreateKeyProps> = ({
                 onChange={(e) => setKeyOwner(e.target.value)}
                 value={keyOwner}
               >
-                <Radio value="you">You</Radio>
-                <Radio value="service_account">Service Account</Radio>
-                {userRole === "Admin" && <Radio value="another_user">Another User</Radio>}
+                <Radio value="you">あなた</Radio>
+                <Radio value="service_account">サービスアカウント</Radio>
+                {userRole === "Admin" && <Radio value="another_user">別のユーザー</Radio>}
               </Radio.Group>
             </Form.Item>
 
@@ -426,21 +426,21 @@ const CreateKey: React.FC<CreateKeyProps> = ({
               <Form.Item
                 label={
                   <span>
-                    User ID{' '}
-                    <Tooltip title="The user who will own this key and be responsible for its usage">
+                    ユーザーID{' '}
+                    <Tooltip title="このキーを所有し、使用に責任を持つユーザー">
                       <InfoCircleOutlined style={{ marginLeft: '4px' }} />
                     </Tooltip>
                   </span>
                 }
                 name="user_id"
                 className="mt-4"
-                rules={[{ required: keyOwner === "another_user", message: `Please input the user ID of the user you are assigning the key to` }]}
+                rules={[{ required: keyOwner === "another_user", message: `キーを割り当てるユーザーのユーザーIDを入力してください` }]}
               >
                 <div>
                   <div style={{ display: 'flex', marginBottom: '8px' }}>
                     <Select
                       showSearch
-                      placeholder="Type email to search for users"
+                      placeholder="ユーザーを検索するためにメールアドレスを入力"
                       filterOption={false}
                       onSearch={handleUserSearch}
                       onSelect={(value, option) => handleUserSelect(value, option as UserOption)}
@@ -448,17 +448,17 @@ const CreateKey: React.FC<CreateKeyProps> = ({
                       loading={userSearchLoading}
                       allowClear
                       style={{ width: '100%' }}
-                      notFoundContent={userSearchLoading ? 'Searching...' : 'No users found'}
+                      notFoundContent={userSearchLoading ? '検索中...' : 'ユーザーが見つかりません'}
                     />
                     <Button2 
                       onClick={() => setIsCreateUserModalVisible(true)}
                       style={{ marginLeft: '8px' }}
                     >
-                      Create User
+                      ユーザー作成
                     </Button2>
                   </div>
                   <div className="text-xs text-gray-500">
-                    Search by email to find users
+                    メールアドレスでユーザーを検索
                   </div>
                 </div>
               </Form.Item>
@@ -466,8 +466,8 @@ const CreateKey: React.FC<CreateKeyProps> = ({
             <Form.Item
               label={
                 <span>
-                  Team{' '}
-                  <Tooltip title="The team this key belongs to, which determines available models and budget limits">
+                  チーム{' '}
+                  <Tooltip title="このキーが属するチーム。利用可能なモデルと予算制限が決まります">
                     <InfoCircleOutlined style={{ marginLeft: '4px' }} />
                   </Tooltip>
                 </span>
@@ -489,21 +489,21 @@ const CreateKey: React.FC<CreateKeyProps> = ({
 
           {/* Section 2: Key Details */}
           <div className="mb-8">
-            <Title className="mb-4">Key Details</Title>
+            <Title className="mb-4">キーの詳細</Title>
             <Form.Item
               label={
                 <span>
-                  {keyOwner === "you" || keyOwner === "another_user" ? "Key Name" : "Service Account ID"}{' '}
+                  {keyOwner === "you" || keyOwner === "another_user" ? "キー名" : "サービスアカウントID"}{' '}
                   <Tooltip title={keyOwner === "you" || keyOwner === "another_user" ? 
-                    "A descriptive name to identify this key" : 
-                    "Unique identifier for this service account"}>
+                    "このキーを識別するための説明的な名前" : 
+                    "このサービスアカウントの一意の識別子"}>
                     <InfoCircleOutlined style={{ marginLeft: '4px' }} />
                   </Tooltip>
                 </span>
               }
               name="key_alias"
-              rules={[{ required: true, message: `Please input a ${keyOwner === "you" ? "key name" : "service account ID"}` }]}
-              help="required"
+              rules={[{ required: true, message: `${keyOwner === "you" ? "キー名" : "サービスアカウントID"}を入力してください` }]}
+              help="必須"
             >
               <TextInput placeholder="" />
             </Form.Item>
@@ -511,20 +511,20 @@ const CreateKey: React.FC<CreateKeyProps> = ({
             <Form.Item
               label={
                 <span>
-                  Models{' '}
-                  <Tooltip title="Select which models this key can access. Choose 'All Team Models' to grant access to all models available to the team">
+                  モデル{' '}
+                  <Tooltip title="このキーがアクセスできるモデルを選択してください。チームで利用可能なすべてのモデルへのアクセスを許可するには「すべてのチームモデル」を選択してください">
                     <InfoCircleOutlined style={{ marginLeft: '4px' }} />
                   </Tooltip>
                 </span>
               }
               name="models"
-              rules={[{ required: true, message: "Please select a model" }]}
-              help="required"
+              rules={[{ required: true, message: "モデルを選択してください" }]}
+              help="必須"
               className="mt-4"
             >
               <Select
                 mode="multiple"
-                placeholder="Select models"
+                placeholder="モデルを選択"
                 style={{ width: "100%" }}
                 onChange={(values) => {
                   if (values.includes("all-team-models")) {
@@ -533,7 +533,7 @@ const CreateKey: React.FC<CreateKeyProps> = ({
                 }}
               >
                 <Option key="all-team-models" value="all-team-models">
-                  All Team Models
+                  すべてのチームモデル
                 </Option>
                 {modelsToPick.map((model: string) => (
                   <Option key={model} value={model}>
@@ -548,21 +548,21 @@ const CreateKey: React.FC<CreateKeyProps> = ({
           <div className="mb-8">
             <Accordion className="mt-4 mb-4">
               <AccordionHeader>
-                <Title className="m-0">Optional Settings</Title>
+                <Title className="m-0">オプション設定</Title>
               </AccordionHeader>
               <AccordionBody>
                 <Form.Item
                   className="mt-4"
                   label={
                     <span>
-                      Max Budget (USD){' '}
-                      <Tooltip title="Maximum amount in USD this key can spend. When reached, the key will be blocked from making further requests">
+                      最大予算（USD）{' '}
+                      <Tooltip title="このキーが使用できる最大金額（USD）。上限に達すると、キーは以降のリクエストをブロックされます">
                         <InfoCircleOutlined style={{ marginLeft: '4px' }} />
                       </Tooltip>
                     </span>
                   }
                   name="max_budget"
-                  help={`Budget cannot exceed team max budget: $${team?.max_budget !== null && team?.max_budget !== undefined ? team?.max_budget : "unlimited"}`}
+                  help={`予算はチームの最大予算を超えることはできません: $${team?.max_budget !== null && team?.max_budget !== undefined ? team?.max_budget : "無制限"}`}
                   rules={[
                     {
                       validator: async (_, value) => {
@@ -573,7 +573,7 @@ const CreateKey: React.FC<CreateKeyProps> = ({
                           value > team.max_budget
                         ) {
                           throw new Error(
-                            `Budget cannot exceed team max budget: $${team.max_budget}`
+                            `予算はチームの最大予算を超えることはできません: $${team.max_budget}`
                           );
                         }
                       },
@@ -586,14 +586,14 @@ const CreateKey: React.FC<CreateKeyProps> = ({
                   className="mt-4"
                   label={
                     <span>
-                      Reset Budget{' '}
-                      <Tooltip title="How often the budget should reset. For example, setting 'daily' will reset the budget every 24 hours">
+                      予算リセット{' '}
+                      <Tooltip title="予算をリセットする頻度。例えば、「日次」に設定すると24時間ごとに予算がリセットされます">
                         <InfoCircleOutlined style={{ marginLeft: '4px' }} />
                       </Tooltip>
                     </span>
                   }
                   name="budget_duration"
-                  help={`Team Reset Budget: ${team?.budget_duration !== null && team?.budget_duration !== undefined ? team?.budget_duration : "None"}`}
+                  help={`チーム予算リセット: ${team?.budget_duration !== null && team?.budget_duration !== undefined ? team?.budget_duration : "なし"}`}
                 >
                   <BudgetDurationDropdown onChange={(value) => form.setFieldValue('budget_duration', value)} />
                 </Form.Item>
@@ -601,14 +601,14 @@ const CreateKey: React.FC<CreateKeyProps> = ({
                   className="mt-4"
                   label={
                     <span>
-                      Tokens per minute Limit (TPM){' '}
-                      <Tooltip title="Maximum number of tokens this key can process per minute. Helps control usage and costs">
+                      1分間あたりのトークン制限（TPM）{' '}
+                      <Tooltip title="このキーが1分間に処理できるトークンの最大数。使用量とコストの制御に役立ちます">
                         <InfoCircleOutlined style={{ marginLeft: '4px' }} />
                       </Tooltip>
                     </span>
                   }
                   name="tpm_limit"
-                  help={`TPM cannot exceed team TPM limit: ${team?.tpm_limit !== null && team?.tpm_limit !== undefined ? team?.tpm_limit : "unlimited"}`}
+                  help={`TPMはチームのTPM制限を超えることはできません: ${team?.tpm_limit !== null && team?.tpm_limit !== undefined ? team?.tpm_limit : "無制限"}`}
                   rules={[
                     {
                       validator: async (_, value) => {
