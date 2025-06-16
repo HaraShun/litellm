@@ -6,6 +6,7 @@ import { transformKeyInfo } from "../components/key_team_helpers/transform_key_i
 import { DataTable } from "./view_logs/table";
 import { Tooltip } from "antd";
 import { Button } from "@tremor/react";
+import { translate } from "../hooks/useTranslation";
 
 interface TopKeyViewProps {
   topKeys: any[];
@@ -90,7 +91,7 @@ const TopKeyView: React.FC<TopKeyViewProps> = ({
       ),
     },
     {
-        header: "Key Alias",
+        header: translate("Key Alias"),
         accessorKey: "key_alias",
         cell: (info: any) => info.getValue() || "-",
       },

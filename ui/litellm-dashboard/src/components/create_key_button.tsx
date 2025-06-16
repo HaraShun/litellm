@@ -44,6 +44,7 @@ import Createuser from "./create_user_button";
 import debounce from 'lodash/debounce';
 import { rolesWithWriteAccess } from '../utils/roles';
 import BudgetDurationDropdown from "./common_components/budget_duration_dropdown";
+import { translate } from "../hooks/useTranslation";
 
 
 
@@ -309,7 +310,7 @@ const CreateKey: React.FC<CreateKeyProps> = ({
   };
 
   const handleCopy = () => {
-    message.success("API Key copied to clipboard");
+    message.success(translate("API Key copied to clipboard"));
   };
 
   useEffect(() => {

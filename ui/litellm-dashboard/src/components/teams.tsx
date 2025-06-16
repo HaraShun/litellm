@@ -31,6 +31,7 @@ import { getGuardrailsList } from "./networking";
 import TeamInfoView, { TeamData } from "@/components/team/team_info";
 import TeamSSOSettings from "@/components/TeamSSOSettings";
 import { isAdminRole } from "@/utils/roles";
+import { translate } from "../hooks/useTranslation";
 import {
   Table,
   TableBody,
@@ -1009,7 +1010,7 @@ const Teams: React.FC<TeamProps> = ({
                         </Select2>
                       </Form.Item>
 
-                      <Form.Item label="Max Budget (USD)" name="max_budget">
+                      <Form.Item label={translate("Max Budget (USD)")} name="max_budget">
                         <NumericalInput step={0.01} precision={2} width={200} />
                       </Form.Item>
                       <Form.Item

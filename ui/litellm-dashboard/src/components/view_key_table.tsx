@@ -72,6 +72,7 @@ import { KeyResponse } from "./key_team_helpers/key_list";
 import { AllKeysTable } from "./all_keys_table";
 import { Team } from "./key_team_helpers/key_list";
 import { Setter } from "@/types";
+import { translate } from "../hooks/useTranslation";
 
 interface EditKeyModalProps {
   visible: boolean;
@@ -365,10 +366,10 @@ const ViewKeyTable: React.FC<ViewKeyTableProps> = ({
 
       setRegenerateDialogVisible(false);
       regenerateForm.resetFields();
-      message.success("API Key regenerated successfully");
+      message.success(translate("API Key regenerated successfully"));
     } catch (error) {
       console.error("Error regenerating key:", error);
-      message.error("Failed to regenerate API Key");
+      message.error(translate("Failed to regenerate API Key"));
     }
   };
 
@@ -443,7 +444,7 @@ const ViewKeyTable: React.FC<ViewKeyTableProps> = ({
 
       {/* Regenerate Key Form Modal */}
       <Modal
-        title="Regenerate API Key"
+        title={translate("Regenerate API Key")}
         visible={regenerateDialogVisible}
         onCancel={() => {
           setRegenerateDialogVisible(false);
@@ -479,25 +480,25 @@ const ViewKeyTable: React.FC<ViewKeyTableProps> = ({
               }
             }}
           >
-            <Form.Item name="key_alias" label="Key Alias">
+            <Form.Item name="key_alias" label={translate("Key Alias")}>
               <TextInput disabled={true} />
             </Form.Item>
-            <Form.Item name="max_budget" label="Max Budget (USD)">
+            <Form.Item name="max_budget" label={translate("Max Budget (USD)")}>
               <InputNumber
                 step={0.01}
                 precision={2}
                 style={{ width: "100%" }}
               />
             </Form.Item>
-            <Form.Item name="tpm_limit" label="TPM Limit">
+            <Form.Item name="tpm_limit" label={translate("TPM Limit")}>
               <InputNumber style={{ width: "100%" }} />
             </Form.Item>
-            <Form.Item name="rpm_limit" label="RPM Limit">
+            <Form.Item name="rpm_limit" label={translate("RPM Limit")}>
               <InputNumber style={{ width: "100%" }} />
             </Form.Item>
             <Form.Item
               name="duration"
-              label="Expire Key (eg: 30s, 30h, 30d)"
+              label={translate("Expire Key (eg: 30s, 30h, 30d)")}
               className="mt-8"
             >
               <TextInput placeholder="" />
@@ -580,9 +581,9 @@ const ViewKeyTable: React.FC<ViewKeyTableProps> = ({
               </div>
               <CopyToClipboard
                 text={regeneratedKey}
-                onCopy={() => message.success("API Key copied to clipboard")}
+                onCopy={() => message.success(translate("API Key copied to clipboard"))}
               >
-                <Button className="mt-3">Copy API Key</Button>
+                <Button className="mt-3">{translate("Copy API Key")}</Button>
               </CopyToClipboard>
             </Col>
           </Grid>

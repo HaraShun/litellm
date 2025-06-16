@@ -5,6 +5,7 @@ import { Row, Col, Typography, Button as Button2, Upload, UploadProps } from "an
 import { UploadOutlined } from "@ant-design/icons";
 import { provider_map, Providers } from "../provider_info_helpers";
 import { CredentialItem } from "../networking";
+import { translate } from "../../hooks/useTranslation";
 const { Link } = Typography;
 
 

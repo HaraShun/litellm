@@ -23,6 +23,7 @@ import { KeyEditView } from "./key_edit_view";
 import { RegenerateKeyModal } from "./regenerate_key_modal";
 import { rolesWithWriteAccess } from '../utils/roles';
 import ObjectPermissionsView from "./object_permissions_view";
+import { translate } from '../hooks/useTranslation';
 
 interface KeyInfoViewProps {
   keyId: string;
@@ -155,7 +156,7 @@ export default function KeyInfoView({ keyId, onClose, keyData, accessToken, user
           >
             Back to Keys
           </Button>
-          <Title>{keyData.key_alias || "API Key"}</Title>
+          <Title>{keyData.key_alias || translate("API Key")}</Title>
           <Text className="text-gray-500 font-mono">{keyData.token}</Text>
         </div>
         {userRole && rolesWithWriteAccess.includes(userRole) && (
@@ -404,4 +405,4 @@ export default function KeyInfoView({ keyId, onClose, keyData, accessToken, user
       </TabGroup>
     </div>
   );
-} 
+}  

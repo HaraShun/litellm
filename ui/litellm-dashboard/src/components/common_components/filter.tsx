@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import { Button, Input, Select } from "antd";
 import { FilterIcon } from "@heroicons/react/outline";
 import debounce from "lodash/debounce";
+import { translate } from "../../hooks/useTranslation";
 
 export interface FilterOption {
   name: string;
@@ -85,7 +86,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
     "Team ID",
     "Status",
     "Organization ID",
-    "Key Alias",
+    translate("Key Alias"),
     "User ID",
     "Key Hash",
     "Model"
